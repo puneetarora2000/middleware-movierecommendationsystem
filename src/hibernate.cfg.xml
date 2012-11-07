@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+<session-factory>
+<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+<!--  
+<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/imdb_full</property>
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password">imdb</property> 
+-->
+<property name="hibernate.connection.url">jdbc:mysql://moviedb.cdmw8xr04c9z.us-east-1.rds.amazonaws.com:3306/movieDB</property>
+<property name="hibernate.connection.username">vishnu</property>
+<property name="hibernate.connection.password">root1234</property> 
+
+<property name="hibernate.connection.pool_size">10</property>
+<property name="show_sql">false</property>
+<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+<property name="hibernate.current_session_context_class">thread</property>
+<mapping class="mrs.database.Actors" />
+<mapping class="mrs.database.Movies" />
+<mapping class="mrs.database.Language" />
+<mapping class="mrs.database.Genres" />
+</session-factory>
+</hibernate-configuration>
+
+<!-- <hibernate-configuration> 
+<session-factory> 
+<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+<property name="hibernate.connection.url">jdbc:mysql://moviedb.cdmw8xr04c9z.us-east-1.rds.amazonaws.com:3306/movieDB</property>
+<property name="hibernate.connection.username">vishnu</property>
+<property name="hibernate.connection.password">root1234</property> 
+<property name="show_sql">true</property> 
+<property name="use_outer_join">true</property> 
+<property name="dialect">org.hibernate.dialect.MySQLDialect</property> 
+<property name="connection.pool_size">1</property> 
+<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> 
+<property name="show_sql">true</property> 
+<property name="hbm2ddl.auto">create</property> 
+
+ <mapping class="MRS.database.Movies"/> 
+ <mapping class="MRS.database.Actors"/> 
+ <mapping class="MRS.database.Actress"/> 
+ <mapping class="MRS.database.Genres"/>
+ <mapping class="MRS.database.Languages"/> 
+ <mapping class="MRS.database.Ratings"/> 
+ </session-factory> 
+  
+ </hibernate-configuration> -->
