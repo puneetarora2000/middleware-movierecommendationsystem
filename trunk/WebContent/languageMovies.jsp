@@ -23,23 +23,10 @@
 
 <c:forEach var="item" items="${languages}">	
 	<c:if test="${item.lid == lid}" > 	
-	<table style="width:40%" class="dataTable">
-	<thead>
-		<tr>			
-			<th class="sortable">Title</th>
-		</tr>		
-	</thead>
-	<tbody>
-	
-<c:forEach var="movies" items="${item.movies}"> 
- 	 	<tr class="odd">
- 	 	<td><a href="Search?movie=${movies.title}">"${movies.title}"</a></td>
- 	 	</tr>
-	</c:forEach>
-	
-	</tbody>
-	</table>
-	
- 	</c:if>
+	<display:table name="${item.movies}" class='dataTable' style="width:60%" pagesize="30">
+ 	 	<display:column property="title" sortable="true" paramId="movie" href="Search" paramProperty="title"/> 		
+  		
+	</display:table>
+		</c:if>
  </c:forEach>
  

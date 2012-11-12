@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/displaytag.css" type="text/css"/> 
+<link rel="stylesheet" href="css/displaytag.css" type="text/css"/>  
 <link rel="icon" href="css/a.png" type="image/png" />
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 <display:table name="Movies" class='dataTable' style="width:60%" pagesize="30">
  	 	<display:column property="mid" title="ID" sortable="true" />
- 	 	<display:column property="title" sortable="true" paramId="mid" href="movieInfo.jsp" paramProperty="mid"/>
+ 	 	<display:column property="title" sortable="true" paramId="mid" href="addHistory" paramProperty="mid"/>
  	 	<display:column property="year" sortable="true" />
  	 	<display:column property="rating"  sortable="true" />
  	 	<display:column property="num_votes" sortable="true" />
@@ -56,7 +56,7 @@
 <c:if test="${Genres.size() > 0}" >  
 	<display:table name="Genres" class='dataTable' style="width:60%" pagesize="30">
  	 	<display:column property="gid" title="ID" sortable="true" />  		
-  		<display:column property="genre" sortable="true" paramId="gid" href="genreMovies.jsp" paramProperty="gid" />  		
+  		<display:column property="genre" sortable="true"  />  		
 	</display:table>
 
 </c:if>

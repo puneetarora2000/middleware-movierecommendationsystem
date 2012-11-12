@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name="genre")
@@ -44,7 +48,8 @@ public class Genres implements Serializable {
 		this.genre = genre;
 	}
 	
-	@ManyToMany()
+	@ManyToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@BatchSize(size=2)
 	public Set<Movies> getMovies() {
 		return this.movies;
 	}

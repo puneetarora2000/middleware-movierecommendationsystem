@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
 import com.mongodb.DB;
@@ -14,7 +15,12 @@ import com.mongodb.BasicDBObject;
 
 public class Register extends  HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	{
 		try {
 			String userId = request.getParameter("userId");
@@ -44,11 +50,15 @@ public class Register extends  HttpServlet {
 	        doc.put("loc", loc);
 
 	        //favMovies is used to store the users top list of movies
-	        BasicDBObject favMovies = new BasicDBObject();
+	        BasicDBList favMovies = new BasicDBList();
 	        doc.put("favMovies", favMovies);
+	        
+	        BasicDBList history = new BasicDBList();
+	        doc.put("history", history);
 
 	        coll.insert(doc);
 			
+	        //mesg is just used for debugging purpose . will be  removed later
 			request.setAttribute("mesg", "added the values in mongo db");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
 			dispatcher.forward(request, response);

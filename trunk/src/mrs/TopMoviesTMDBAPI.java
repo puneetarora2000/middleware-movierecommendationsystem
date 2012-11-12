@@ -21,8 +21,7 @@ public class TopMoviesTMDBAPI extends HttpServlet {
 		try {
 			//System.out.println("Entered into the class TopMoviesTMDBAPI");
 			String jsonObject = getMovieListFromAPI();
-			HttpSession httpSession = request.getSession(true);
-			httpSession.setAttribute("topMoviesList", jsonObject);
+			request.setAttribute("topMoviesList", jsonObject);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/topMoviesList.jsp");
 			dispatcher.forward(request, response);
 		} catch(Exception ex) {
