@@ -13,19 +13,10 @@
   		<servlet-name>searchMovie</servlet-name>
   		<url-pattern>/SearchMovieServlet</url-pattern> 
   </servlet-mapping>
-  <servlet> 
-  		<servlet-name>Movies_info</servlet-name> 
-  		<servlet-class>mrs.Movies_info</servlet-class> 
-  </servlet> 
-  <servlet-mapping> 
-  		<servlet-name>Movies_info</servlet-name>
-  		<url-pattern>/Movies_info</url-pattern> 
-  </servlet-mapping>
    <servlet> 
   		<servlet-name>signUp</servlet-name> 
   		<servlet-class>mrs.SignUp</servlet-class> 
   </servlet> 
-  
   <servlet-mapping> 
   		<servlet-name>signUp</servlet-name>
   		<url-pattern>/SignUp</url-pattern> 
@@ -46,7 +37,14 @@
   		<servlet-name>login</servlet-name>
   		<url-pattern>/Login</url-pattern> 
   </servlet-mapping>
-  
+  <servlet> 
+  		<servlet-name>logout</servlet-name> 
+  		<servlet-class>mrs.Logout</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>logout</servlet-name>
+  		<url-pattern>/Logout</url-pattern> 
+  </servlet-mapping>
   
   <servlet> 
   		<servlet-name>Search</servlet-name> 
@@ -64,5 +62,14 @@
   <servlet-mapping> 
   		<servlet-name>topMovies</servlet-name>
   		<url-pattern>/topMoviesServlet</url-pattern> 
+  </servlet-mapping>
+  
+   <servlet> 
+  		<servlet-name>addHistory</servlet-name> 
+  		<servlet-class>mrs.addHistory</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>addHistory</servlet-name>
+  		<url-pattern>/addHistory</url-pattern> 
   </servlet-mapping>
 </web-app>

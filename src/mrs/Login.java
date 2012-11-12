@@ -4,6 +4,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -15,7 +16,12 @@ import com.mongodb.WriteConcern;
 
 public class Login extends  HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	{
 		try  {
 		
@@ -29,6 +35,7 @@ public class Login extends  HttpServlet {
 			
 			BasicDBObject query = new BasicDBObject();
 			query.put("userId", userId);
+			
 			DBCursor cursor = coll.find(query);
 			
 			String msg = "User not found";
@@ -36,9 +43,12 @@ public class Login extends  HttpServlet {
 				DBObject obj = cursor.next();
 				if(obj.get("passwd").equals(passwd)) {
 					msg = "User logged in";
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", userId);
 				} else
 					msg = "Wrong password";
 			}
+			
 			
 			request.setAttribute("mesg", msg);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");

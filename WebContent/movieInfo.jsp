@@ -3,7 +3,16 @@
     <%@ page import="java.util.*"%>
     <%@ page import="mrs.database.Actors"%>
     <%@ page import="mrs.database.Movies"%>
-    <%@ page import="mrs.database.Language"%>    
+    <%@ page import="mrs.database.Language"%> 
+    <%@ page import="org.hibernate.mapping.Map"%>
+
+<%@ page import="com.mongodb.BasicDBList"%>
+<%@ page import="com.mongodb.BasicDBObject"%>
+<%@ page import="com.mongodb.DB"%>
+<%@ page import="com.mongodb.DBCollection"%>
+<%@ page import="com.mongodb.DBCursor"%>
+<%@ page import="com.mongodb.DBObject"%>
+<%@ page import="com.mongodb.Mongo"%>   
     <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
@@ -11,70 +20,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/displaytag.css" type="text/css"/> 
+<link rel="stylesheet" href="css/displaytag.css" type="text/css"/>  
 <link rel="icon" href="css/a.png" type="image/png" />
 </head>
 <body>
 <jsp:include page="home.jsp"></jsp:include>
 
-<% request.setAttribute( "Movies", session.getAttribute("moviesList") ); %> 
-<% request.setAttribute( "mid", request.getParameter("mid") ); %> 
+<%
+request.setAttribute( "Movies", session.getAttribute("moviesList") ); 
+request.setAttribute( "mid", session.getAttribute("mid") );
+%> 
 
 
 <c:forEach var="item" items="${Movies}">	
 	<c:if test="${item.mid == mid}" > 	
-	<table style="width:40%" class="dataTable">
-	<thead>
-		<tr>			
-			<th class="sortable">Full Name</th>
-		</tr>		
-	</thead>
-	<tbody>
-	
-<c:forEach var="actors" items="${item.actors}"> 
- 	 	<tr class="odd">
- 	 	<td><a href="Search?actor=${actors.fullname}">"${actors.fullname}"</a></td>
- 	 	</tr>
-	</c:forEach>
-	
-	</tbody>
-	</table>
-	<table style="width:40%" class="dataTable">
-	<thead>
-		<tr>
-			
-			<th class="sortable">Language</th>
-			
-		</tr>		
-	</thead>
-	<tbody>
-	<c:forEach var="languages" items="${item.languages}"> 
- 	 	<tr class="odd">
- 	 	<td><a href="Search?language=${languages.language}">"${languages.language}"</a></td>
- 	 	</tr>
-	</c:forEach>
-	
-	</tbody>
-	</table>
-	<table style="width:40%" class="dataTable">
-	<thead>
-		<tr>
-			
-			<th class="sortable">Genre</th>
-			
-		</tr>		
-	</thead>
-	<tbody>
-	<c:forEach var="genres" items="${item.genres}"> 
- 	 	<tr class="odd">
- 	 	<td><a href="Search?genre=${genres.genre}">"${genres.genre}"</a></td>
- 	 	</tr>
-	</c:forEach>
-	
-	</tbody>
-	</table>
-	
-		
+		<display:table name="${item.actors}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+ 	 	<display:column property="fullname" sortable="true"  paramId="actor" href="Search" paramProperty="fullname"/> 	 	 	
+ 	</display:table>
+ 	
+ 	<display:table name="${item.languages}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+ 	 	<display:column property="language" sortable="true"  paramId="language" href="Search" paramProperty="language"/> 	 	 	
+ 	</display:table>
+ 	
+ 	<display:table name="${item.genres}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+ 	 	<display:column property="genre" sortable="true" /> 	 	 	
+ 	</display:table>
  	</c:if>
  </c:forEach>
  

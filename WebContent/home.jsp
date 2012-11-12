@@ -4,20 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/displaytag.css" type="text/css" />
+<link rel="stylesheet" href="css/displaytag.css" type="text/css"/> 
 <link rel="icon" href="css/a.png" type="image/png" />
-
-
-<title>Movie Recommendation System</title>
 <script src="js/clientValidation.js">
 </script>
+
+<title>Movie Recommendation System</title>
 </head>
 <body>
-	<div class="center">
-		<table class='simple' style="width: 100%">
-			<tr>
-				<td colspan="2">
-					<h1 align="center">Movie Recommendation System</h1>
 					<% if(request.getAttribute("mesg") != null) {%>
 					<%= request.getAttribute("mesg") %>
 					<%} %>
@@ -25,57 +19,63 @@
 					<% if(request.getAttribute("obj") != null) {%>
 					<%= request.getAttribute("obj") %>
 					<%} %>
-				</td>
-			</tr>
+				
+	<h1 align="center">Movie Recommendation System</h1>
+	<div id="level1">
+	<div id="level1_left">
+		<table class='simple'>
 			<tr>
-				<td width="50%">
+				<td>
 					<form action="Search" onSubmit="return validateForm(this)" name="actor">
-						Search for Actor  : <input type="text" name="actor" size="20px">
+						Search by Actor Name : <input type="text" name="actor" size="20px">
 						<input type="submit" value="submit" class="button">
 					</form>
 				</td>
-				<td rowspan="3"><a
-					href="<%=request.getContextPath()%>/topMoviesServlet"> Get Top
-						20 Movies</a></td>
-				<td>
-					<form action="Login"  >
-					    User ID : <input type="text" name="userId">
-					    Password : <input type="password" name="passwd">
-					    <input type="submit"  value="Submit" class="button">
-					</form>
-				</td>
 			</tr>
 			<tr>
-				<td width="50%">
+				<td>
 					<form action="Search" onSubmit="return validateForm(this)" name="movie">
 						Search by Movie Name : <input type="text" name="movie" size="20px">
 						<input type="submit" value="submit" class="button">
 					</form>
 				</td>
-				<td align="right">
-				<form action="SignUp">
-					    <input type="submit" class="button" value="Sign Up">
-					</form>
-				</td>
 			</tr>
 			<tr>
-				<td width="50%">
-					<form action="Search" onSubmit="return validateForm(this)" name="language"  >
-						Search for Language  : <input type="text" name="language" size="20px">
+				<td>
+					<form action="Search" onSubmit="return validateForm(this)" name="language">
+						Search by Language Name : <input type="text" name="language" size="20px">
 						<input type="submit" value="submit" class="button">
 					</form>
 				</td>
 			</tr>
-			<tr>
-				<td width="50%">
-					<form action="Search" onSubmit="return validateForm(this)" name="genre"  >
-						Search for Genre : <input type="text" name="genre" size="20px">
-						<input type="submit" value="submit" class="button">
-					</form>
-				</td>
-			</tr>
+			
 		</table>
-
-	</div>
+	   </div>
+	  
+        <div id="level1_right" style="padding-top:0px">
+        	<% if(request.getSession().getAttribute("user") != null) {%>
+					<%= "Welcome " + request.getSession().getAttribute("user") %>
+					<br/><a href="Logout" style="textalign:right"> Logout </a>
+			<%} else { %>
+			<form action="Login" method="post">
+			<table border="0" align="right" >	
+			<tr>
+        	    <td>User ID :</td>
+        	    <td> <input type="text" name="userId" align="right"></td>				
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td> <input type="password" name="passwd" align="right"></td>
+			<tr>
+				<td><input type="submit" class="button" value="Login" align="right"></td>
+				<td><a href="<%=request.getContextPath()%>/SignUp">Sign up</a></td>
+			</tr>
+				</table>
+				</form>
+			<% } %>
+           <br/><br/>
+        </div>
+    </div>
+    <a href="<%=request.getContextPath()%>/topMoviesServlet" style="margin-left:280px;"> Get Top 20 Movies</a></br></br>
 </body>
 </html>
