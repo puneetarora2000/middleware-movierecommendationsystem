@@ -34,7 +34,7 @@ public class Register extends  HttpServlet {
 			String loc = request.getParameter("loc");
 			
 			Mongo m = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
-			 m.setWriteConcern(WriteConcern.SAFE);
+			m.setWriteConcern(WriteConcern.SAFE);
 			DB db = m.getDB("UserProfile");
 			DBCollection coll = db.getCollection("testCollection");
 			
