@@ -1,0 +1,48 @@
+package com.sample
+ 
+
+import drools.movieapi.MoviesApi;
+import drools.main.Message;
+
+ 
+rule "UpcomingMoviesUpdate"
+    timer ( int: 2h 3h)
+	when eval(true)
+    then
+    	System.out.println("Updating DB");
+    	MoviesApi moviesApi=new MoviesApi();
+		moviesApi.upcomingMovies();
+		
+end
+
+rule "NowPlayingMoviesUpdate"
+    timer ( int: 2h 3h)
+	when eval(true)
+    then
+    	System.out.println("Updating DB");
+    	MoviesApi moviesApi=new MoviesApi();
+		moviesApi.nowPlayingMovies();
+end
+
+rule "GenerateRecommendation"
+dialect "java"
+    timer ( int: 1s 7h)
+	when eval(true)
+    then
+    	System.out.println("Generating recommendation");
+    	MoviesApi moviesApi=new MoviesApi();
+		moviesApi.generateRecommendation();
+		insert(new Message(Message.EMAIL));
+end
+
+rule "emailRecommendation"
+dialect "java"
+	when 
+		m : Message (status == Message.EMAIL)
+	then
+		System.out.println("email recommendation list");
+		//MoviesApi moviesApi=new MoviesApi();
+		//moviesApi.emailRecommendation();
+end
+
+
