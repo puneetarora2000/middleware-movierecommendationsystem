@@ -15,6 +15,7 @@ import drools.constants.Collections;
 
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.json.simple.JSONObject;
@@ -105,5 +106,27 @@ public class MongoDB {
 	
 	public void closeDB() {
 		mongo.close();
+	}
+
+	public void updateMovieReview(int mid, String review) {
+		BasicDBObject query = new BasicDBObject();
+		collection = db.getCollection(Collections.MOVIE_COLLECTION.getName());
+		query.put("mid", mid);
+		DBObject movie = collection.findOne(query);
+		if(movie == null) {
+			movie = new BasicDBObject();
+			movie.put("mid", mid);
+			movie.put("rating", 0);
+			ArrayList reviewList = new ArrayList();
+			reviewList.add(review);
+			movie.put("review", reviewList);
+			collection.insert(movie);
+			return;
+		}
+		System.out.println("Testing: ");
+		BasicDBObject movieUpdate = new BasicDBObject().append("$push", 
+				new BasicDBObject().append("review", review));
+		collection.update(movie, movieUpdate);
+		System.out.println("updated: ");
 	}
 }

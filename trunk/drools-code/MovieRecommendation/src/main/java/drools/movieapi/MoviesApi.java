@@ -282,4 +282,13 @@ public class MoviesApi {
 		mongoDB.updateMovieRating(mid, rating);
 		mongoDB.closeDB();
 	}
+	
+	public void updateMovieReview(int mid, String review) throws UnknownHostException {
+		System.out.println("Adding review for movies");		
+		mongoDB.connectMovieDB();
+		mongoDB.updateMovieReview(mid, review);
+		mongoDB.closeDB();
+	}
+	
+	
 }
