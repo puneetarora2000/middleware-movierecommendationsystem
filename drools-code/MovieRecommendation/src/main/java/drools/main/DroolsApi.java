@@ -13,6 +13,7 @@ import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 import drools.message.RatingMessage;
+import drools.message.ReviewMessage;
 
 public class DroolsApi {
 	private KnowledgeBase kbase;
@@ -34,6 +35,11 @@ public class DroolsApi {
 	
 	public void insertRating(int mid, double d) {
 		RatingMessage msg = new RatingMessage(mid,d);
+		ksession.insert(msg);
+	}
+	
+	public void insertReview(int mid, String review) {
+		ReviewMessage msg = new ReviewMessage(mid,review);
 		ksession.insert(msg);
 	}
 	

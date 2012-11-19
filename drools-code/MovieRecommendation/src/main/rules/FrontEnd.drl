@@ -4,6 +4,7 @@ package com.sample
 import drools.movieapi.MoviesApi;
 import drools.main.Message;
 import drools.message.RatingMessage;
+import drools.message.ReviewMessage;
 
 
 rule "MovieRating"
@@ -13,8 +14,17 @@ dialect "java"
 	then
 		System.out.println("Movie rating updated: "+ m.getMid());
 		MoviesApi movie = new MoviesApi();
-		movie.updateMovieRating(m.getMid(),m.getRating());
-		
+		movie.updateMovieRating(m.getMid(),m.getRating());		
+end
+
+rule "MovieReview"
+dialect "java"
+	when 
+		m : ReviewMessage ()
+	then
+		System.out.println("Movie rating updated: "+ m.getMid());
+		MoviesApi movie = new MoviesApi();
+		movie.updateMovieReview(m.getMid(),m.getReview());	
 end
 
 
