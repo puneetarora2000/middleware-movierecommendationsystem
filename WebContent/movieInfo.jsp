@@ -29,6 +29,11 @@
 <%
 request.setAttribute( "Movies", session.getAttribute("moviesList") ); 
 request.setAttribute( "mid", session.getAttribute("mid") );
+request.setAttribute("rating", session.getAttribute("rating"));
+request.setAttribute("user", session.getAttribute("user"));
+request.setAttribute("ob", session.getAttribute("ob"));
+
+
 %> 
 
 <table width="100%">
@@ -49,7 +54,6 @@ request.setAttribute( "mid", session.getAttribute("mid") );
  	</display:table>
  	</c:if>
  </c:forEach>
- 
 </td>
 
 <td width="40%">
@@ -59,6 +63,32 @@ request.setAttribute( "mid", session.getAttribute("mid") );
 <%} %>
 </td>
 </tr>
+</br>
+</br>
+</br>
+
+<% if(request.getSession().getAttribute("rating") != null ) { %>
+<tr>
+	<td>
+		<b>Average Rating given through the Application : </b> <%= request.getSession().getAttribute("rating") %>
+	</td>
+</tr>
+<%} %>
+
+<% if(request.getSession().getAttribute("ob") != null ) { %>
+<tr>
+	<td>
+		<b>Reviews:</b>
+		<br>
+		<c:forEach var="nameObj" items="${ob}">  
+        	<c:if test="${not empty nameObj}">
+        		&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${nameObj}"></c:out><br>  
+        	</c:if>
+		</c:forEach> 
+	</td>
+</tr>
+<%} %>
+
 </table>
 
  
