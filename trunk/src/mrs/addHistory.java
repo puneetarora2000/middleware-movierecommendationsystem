@@ -1,5 +1,7 @@
 package mrs;
 
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.WriteConcern;
 
 public class addHistory extends HttpServlet  {
 
@@ -63,16 +66,41 @@ public class addHistory extends HttpServlet  {
 		 }
 		 
 	}
-		httpSession.setAttribute("mid", mid);				
+		httpSession.setAttribute("rating", getRating(mid, httpSession) );
+		httpSession.setAttribute("mid", mid);
+		httpSession.setAttribute("user", user);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/movieInfo.jsp");
 		dispatcher.forward(request, response);
 		}
 		catch (Exception e) {
 			System.out.print("Error in updating history" +e);
 		}
-		 
+	}
+
+	private double getRating(String mid, HttpSession httpSession) throws Exception {
 		
+		System.out.println("Get Rating ---- method in the addhistory servlet");
+		// Connection to Mongo DB
+		Mongo m = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
+		m.setWriteConcern(WriteConcern.SAFE);
+		DB db = m.getDB("movieDB");
+		DBCollection coll = db.getCollection("movies");
+		double rating = 0;
+		ArrayList<String> reviews = new ArrayList<>();
+		BasicDBObject mongoQuery = new BasicDBObject();
+		mongoQuery.put("mid",Integer.parseInt(mid));
+		DBCursor cursor = coll.find(mongoQuery);
+		BasicDBList ob = null;
+
+		while(cursor.hasNext()) {
+			DBObject obj = cursor.next();
+			ob = (BasicDBList) obj.get("review");
+			rating = (double) obj.get("rating");
+		}
 		
+		httpSession.setAttribute("ob",ob);
+		
+		return rating;
 		
 	}
 }
