@@ -48,19 +48,17 @@
 					</form>
 				</td>
 			</tr>
+			
 		</table>
 	   </div>
 	  
         <div id="level1_right" style="padding-top:0px">
-	        <div align="right">
-	        	<% if(request.getSession().getAttribute("user") != null) {%>
-						<%= "Welcome " + request.getSession().getAttribute("user") %>
-						<br/><a href="Logout"> Logout </a>
-				<%} else { %>
-	        </div>
-        	
+        	<% if(request.getSession().getAttribute("user") != null) {%>
+					<%= "Welcome " + request.getSession().getAttribute("user") %>
+					<br/><a href="Logout" style="textalign:right"> Logout </a>
+			<%} else { %>
 			<form action="Login" method="post">
-			<table border="0" align="right" >
+			<table border="0" align="right" >	
 			<tr>
         	    <td>User ID :</td>
         	    <td> <input type="text" name="userId" align="right"></td>				
@@ -75,10 +73,9 @@
 				</table>
 				</form>
 			<% } %>
+           <br/><br/>
         </div>
     </div>
-    <div>
-    	<a href="<%=request.getContextPath()%>/topMoviesServlet" style="margin-left:280px;"> Get Top 20 Movies</a></br></br>
-    </div>    
+    <a href="<%=request.getContextPath()%>/topMoviesServlet" style="margin-left:280px;"> Get Top 20 Movies</a></br></br>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class Movies_info extends HttpServlet {
 	{
 		try {
 			
-			System.out.print("I am in Movies_Info");
+			System.out.print("I am in Movies_Info");	
 			
 			String mid = request.getParameter("mid");					
 			Session session = HibernateUtil.currentSession();
@@ -42,6 +42,7 @@ public class Movies_info extends HttpServlet {
 				httpSession.setAttribute("moviesList", result);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/details.jsp");
 				dispatcher.forward(request, response);
+				
 			}
 			else
 			{

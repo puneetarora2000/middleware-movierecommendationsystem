@@ -1,5 +1,7 @@
 package mrs;
 
+import java.net.UnknownHostException;
+
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
 
@@ -16,7 +18,7 @@ public class MongoSingleton {
 		
 		try {
 			mongoInstance = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
-		} catch (Exception e) {
+		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
