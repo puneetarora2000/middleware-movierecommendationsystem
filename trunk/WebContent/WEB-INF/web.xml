@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>MovieRecommendationSystem</display-name>
   <welcome-file-list>
-    <welcome-file>landingPage.jsp</welcome-file>
+    <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
   
   <servlet> 
@@ -72,13 +72,14 @@
   		<servlet-name>addHistory</servlet-name>
   		<url-pattern>/addHistory</url-pattern> 
   </servlet-mapping>
-  
-   <servlet> 
-  		<servlet-name>upcomingMovies</servlet-name> 
-  		<servlet-class>mrs.UpcomingMovies</servlet-class> 
+  <servlet> 
+  		<servlet-name>ReviewRating</servlet-name> 
+  		<servlet-class>mrs.ReviewRating</servlet-class> 
   </servlet> 
   <servlet-mapping> 
-  		<servlet-name>upcomingMovies</servlet-name>
-  		<url-pattern>/upcomingMovies</url-pattern> 
+  		<servlet-name>ReviewRating</servlet-name>
+  		<url-pattern>/ReviewRating</url-pattern> 
   </servlet-mapping>
+  
+  
 </web-app>

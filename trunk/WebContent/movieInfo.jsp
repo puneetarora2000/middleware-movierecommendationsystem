@@ -31,7 +31,9 @@ request.setAttribute( "Movies", session.getAttribute("moviesList") );
 request.setAttribute( "mid", session.getAttribute("mid") );
 %> 
 
-
+<table width="100%">
+<tr>
+<td width="60%">
 <c:forEach var="item" items="${Movies}">	
 	<c:if test="${item.mid == mid}" > 	
 		<display:table name="${item.actors}" class='dataTable' style="width:60%" pagesize="30"> 	 	
@@ -47,6 +49,20 @@ request.setAttribute( "mid", session.getAttribute("mid") );
  	</display:table>
  	</c:if>
  </c:forEach>
+ 
+</td>
+
+<td width="40%">
+
+<% if(request.getSession().getAttribute("user") != null) {%>
+<jsp:include page="reviewRating.jsp"></jsp:include>
+<%} %>
+</td>
+</tr>
+</table>
+
+ 
+ 
  
 
 

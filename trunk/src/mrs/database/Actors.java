@@ -19,6 +19,7 @@ public class Actors implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String lname;
 	private String fname;
 	private int aid;

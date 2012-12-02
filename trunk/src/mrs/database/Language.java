@@ -1,5 +1,6 @@
 package mrs.database;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="language")
-public class Language {
+public class Language implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int lid;
 	private String language;
 	private String language_notes;
