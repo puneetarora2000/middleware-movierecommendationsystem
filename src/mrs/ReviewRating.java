@@ -3,6 +3,7 @@ package mrs;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -80,13 +81,15 @@ public class ReviewRating extends HttpServlet {
 //		}
 			
 			httpSession.setAttribute("mid", mid);				
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/movieInfo.jsp");
+			//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/movieInfo.jsp");
 			try {
-				dispatcher.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+				//ServletContext.this.getContextPath();
+				
+				System.out.println("-->"+getServletContext().getContextPath());
+				response.sendRedirect(getServletContext().getContextPath()+"/addHistory?mid="+mid);
+
+				//dispatcher.forward(request, response);
+			}  catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
