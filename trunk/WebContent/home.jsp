@@ -77,5 +77,7 @@
         </div>
     </div>
     <a href="<%=request.getContextPath()%>/topMoviesServlet" style="margin-left:280px;"> Get Top 20 Movies</a></br></br>
+    <a href="<%=request.getContextPath()%>/upComingMoviesServlet" style="margin-left:280px;"> Upcoming Movies</a></br></br>
+    
 </body>
 </html>
