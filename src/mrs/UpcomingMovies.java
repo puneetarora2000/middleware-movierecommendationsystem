@@ -53,7 +53,7 @@ public class UpcomingMovies extends HttpServlet {
 		while (rs.next()) {
 			arrayObj = new JSONObject();
 			String mid = rs.getString("mid");
-			String title = rs.getString("title");
+			String title = "<a href= "+request.getContextPath()+"/Search?movie="+ rs.getString("title").replace(" ","%20") +">" + rs.getString("title") + "</a>" ;
 			String year = rs.getString("year");
 			String year_end = rs.getString("year_end");
 			String vtype = rs.getString("vtype");

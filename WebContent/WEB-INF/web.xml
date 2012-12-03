@@ -73,6 +73,15 @@
   		<url-pattern>/upComingMoviesServlet</url-pattern> 
   </servlet-mapping>
   
+  <servlet> 
+  		<servlet-name>nowPlayingMovies</servlet-name> 
+  		<servlet-class>mrs.NowPlayingMovies</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>nowPlayingMovies</servlet-name>
+  		<url-pattern>/nowPlayingMoviesServlet</url-pattern> 
+  </servlet-mapping>
+  
    <servlet> 
   		<servlet-name>addHistory</servlet-name> 
   		<servlet-class>mrs.addHistory</servlet-class> 
