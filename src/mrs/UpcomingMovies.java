@@ -1,13 +1,18 @@
 package mrs;
 
 import java.net.*;
+import java.sql.DriverManager;
 import java.io.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import java.sql.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class UpcomingMovies extends HttpServlet {
 	
@@ -20,8 +25,9 @@ public class UpcomingMovies extends HttpServlet {
 	{
 		try {
 			System.out.println("Entered into the class UpcomingMovies");
-			String jsonObject = getMovieListFromAPI();
-			request.setAttribute("upcomingMovies", jsonObject);
+			
+			getMovieListFromAPI(request);
+			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/upcomingMovies.jsp");
 			dispatcher.forward(request, response);
 		} catch(Exception ex) {
@@ -29,19 +35,47 @@ public class UpcomingMovies extends HttpServlet {
 		}
 	}
 
-    public String  getMovieListFromAPI() throws Exception  {
+    public void getMovieListFromAPI(HttpServletRequest request) throws Exception  {
     	
-		//System.out.println("Entered into the method getMovieListFromAPI() ");
+		System.out.println("Entered into the method upComing Movies() ");
     	
-    	URL tmdb = new URL("http://api.themoviedb.org/3/movie/upcoming?api_key=e88aa0025e49b8c50140cc3db7710376&page=1&language=english");
-        URLConnection conn = tmdb.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String inputLine;
-        StringBuffer sb = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) 
-        	sb.append(inputLine);
-        in.close();
-        
-        return sb.toString();
+		String dbUrl = "jdbc:mysql://moviedb.cdmw8xr04c9z.us-east-1.rds.amazonaws.com:3306/movieDB";
+		String dbClass = "com.mysql.jdbc.Driver";
+		String query = "Select * FROM upcoming_movies";
+		
+		Class.forName(dbClass);
+		Connection con = DriverManager.getConnection (dbUrl,"vishnu","root1234");
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		JSONObject arrayObj = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		while (rs.next()) {
+			arrayObj = new JSONObject();
+			String mid = rs.getString("mid");
+			String title = rs.getString("title");
+			String year = rs.getString("year");
+			String year_end = rs.getString("year_end");
+			String vtype = rs.getString("vtype");
+			String notes = rs.getString("notes");
+			String rating = rs.getString("rating");
+			String num_votes = rs.getString("num_votes");
+			String distribution = rs.getString("distribution");
+			arrayObj.put("mid",mid);
+			arrayObj.put("title",title);
+			arrayObj.put("year",year);
+			arrayObj.put("year_end",year_end);
+			arrayObj.put("vtype",vtype);
+			arrayObj.put("notes",notes);
+			arrayObj.put("rating",rating);
+			arrayObj.put("num_votes",num_votes);
+			arrayObj.put("distribution",distribution);
+			array.put(arrayObj);
+		} //end while
+		
+		request.setAttribute("upcomingMovies", array);
+
+		con.close();
+		
     }
 }

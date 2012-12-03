@@ -55,13 +55,22 @@
   		<url-pattern>/Search</url-pattern> 
   </servlet-mapping>
   
-    <servlet> 
+  <servlet> 
   		<servlet-name>topMovies</servlet-name> 
   		<servlet-class>mrs.TopMoviesTMDBAPI</servlet-class> 
   </servlet> 
   <servlet-mapping> 
   		<servlet-name>topMovies</servlet-name>
   		<url-pattern>/topMoviesServlet</url-pattern> 
+  </servlet-mapping>
+  
+  <servlet> 
+  		<servlet-name>upComingMovies</servlet-name> 
+  		<servlet-class>mrs.UpcomingMovies</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>upComingMovies</servlet-name>
+  		<url-pattern>/upComingMoviesServlet</url-pattern> 
   </servlet-mapping>
   
    <servlet> 

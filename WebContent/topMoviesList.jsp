@@ -53,7 +53,7 @@ function executeNow() {
             {key:"title", sortable:true, resizeable:true},
             {key:"original_title", sortable:true, resizeable:true},
             {key:"release_Date",  sortable:true, resizeable:true},
-            {key:"vote_average", sortable:true, resizeable:true},
+            {key:"vote_average", label:"Average Rating",sortable:true, resizeable:true},
             {key:"vote_count", sortable:true, resizeable:true}
           	//{key:"poster_path", resizeable:true}
             //{key:"backdrop_path", sortable:true, resizeable:true}
