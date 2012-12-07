@@ -25,7 +25,7 @@ public class MongoDB {
 	private DB db;
 	public DBCursor cursor;
 	public DBCursor history;
-	private DBCollection  collection;
+	public DBCollection  collection;
 	public DBCollection historyCollection;
 	public void connectMovieDB() throws UnknownHostException {
 		mongo = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
@@ -47,7 +47,6 @@ public class MongoDB {
 		query.put("mid", mid);
 		DBObject movie = collection.findOne(query);
 		if(movie == null) {
-			System.out.println("inside!");
 			movie = new BasicDBObject();
 			movie.put("mid", mid);
 			movie.put("rating", movieRating);
@@ -57,8 +56,6 @@ public class MongoDB {
 		System.out.println("Test: " + movie.get("rating"));
 		double rating = (Double) movie.get("rating");
 		double updatedRating = (rating + movieRating)/2;
-		//int rating = (Integer) movie.get("rating");
-		//int updatedRating = (int) ((rating + movieRating)/2);
 		BasicDBObject movieUpdate = new BasicDBObject().append("$set", 
 				new BasicDBObject().append("rating", updatedRating));
 		collection.update(movie, movieUpdate);
@@ -66,6 +63,11 @@ public class MongoDB {
 	
 	public void getUserList() {
 		collection = db.getCollection(Collections.TEST_COLLECTION.getName());
+		cursor = collection.find();
+	}
+	
+	public void getFavList(String favCollection) {
+		collection = db.getCollection(favCollection);
 		cursor = collection.find();
 	}
 	
