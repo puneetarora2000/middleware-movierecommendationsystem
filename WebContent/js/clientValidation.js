@@ -3,7 +3,7 @@
 function validateForm(thisform)
 {
 	
-	//alert(thisform.name);
+	alert(thisform.name);
 	
 	switch(thisform.name)
 	
@@ -47,7 +47,7 @@ function validateForm(thisform)
 function checkSignup(thisform)
 {
 	
-	//alert(thisform.name);
+	alert(thisform.name);
 
 		
 		if((thisform.userId.value ==  null )|| (thisform.userId.value.length ==  0 ))

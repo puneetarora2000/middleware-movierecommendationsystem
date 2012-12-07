@@ -53,7 +53,7 @@ public class Login extends  HttpServlet {
 					
 					for (Object mid : favMovie) {
 						BasicDBObject element =  (BasicDBObject)mid;			
-						String movieName = element.get("id").toString();
+						String movieName = element.get("title").toString();
 						movieDetails.add(movieName);
 					}
 					
