@@ -13,6 +13,16 @@
   		<servlet-name>searchMovie</servlet-name>
   		<url-pattern>/SearchMovieServlet</url-pattern> 
   </servlet-mapping>
+  
+   <servlet> 
+  		<servlet-name>SetInterest</servlet-name> 
+  		<servlet-class>mrs.SetInterest</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>SetInterest</servlet-name>
+  		<url-pattern>/SetInterest</url-pattern> 
+  </servlet-mapping>
+  
    <servlet> 
   		<servlet-name>signUp</servlet-name> 
   		<servlet-class>mrs.SignUp</servlet-class> 

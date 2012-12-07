@@ -81,7 +81,7 @@
 	   <td>
 	  <table class="simple">
       <tr><td>
-      <form action="" method="post">
+      <form action="SetInterest" method="get">
                         Mood : <select name="mood">
                                 <option value="FeelGood" selected="selected">Feel Good</option>
                                 <option value="Witty">Witty</option>
@@ -95,7 +95,7 @@
       </td></tr>
       
       <tr><td>
-      <form action="" method="post">
+      <form action="SetInterest">
                         Movie Duration : <select name="duration">
                                 <option value="1" selected="selected">1 Hr</option>
                                 <option value="130">1 Hr 30 Min</option>
@@ -108,7 +108,7 @@
       </td></tr>
       
       <tr><td>
-      <form action="" method="post">
+      <form action="SetInterest" >
                         Time/Period Duration : <select name="period">
                                 <option value="90s" selected="selected">Latest</option>
                                 <option value="20s">20s</option>
