@@ -3,6 +3,7 @@ package drools.main;
 public class Message {
 	public static final int GENERATE   = 0;
     public static final int EMAIL = 1;
+    public static final int AGE = 2;
     
     public int status;
     
