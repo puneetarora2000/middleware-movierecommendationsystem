@@ -1,5 +1,9 @@
 package mrs;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.net.*;
 import java.sql.DriverManager;
 import java.io.*;
@@ -10,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 

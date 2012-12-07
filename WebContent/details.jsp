@@ -23,6 +23,8 @@
 <c:if test="${Movies.size() > 0}" >
 
 <display:table name="Movies" class='dataTable' style="width:60%" pagesize="30">
+<display:setProperty name="basic.msg.empty_list" value="" />
+<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="mid" title="ID" sortable="true" />
  	 	<display:column property="title" sortable="true" paramId="mid" href="addHistory" paramProperty="mid"/>
  	 	<display:column property="year" sortable="true" />
@@ -35,6 +37,8 @@
 
 <c:if test="${Actors.size() > 0}" >  
 	<display:table name="Actors" class='dataTable' style="width:60%" pagesize="30">
+	<display:setProperty name="basic.msg.empty_list" value="" />
+	<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="aid" title="ID" sortable="true" />
   		<display:column property="fname" sortable="true"/>
   		<display:column property="lname" sortable="true"/>
@@ -47,6 +51,8 @@
 
 <c:if test="${Languages.size() > 0}" >  
 	<display:table name="Languages" class='dataTable' style="width:60%" pagesize="30">
+	<display:setProperty name="basic.msg.empty_list" value="" />
+	<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="lid" title="ID" sortable="true" />  		
   		<display:column property="language" sortable="true" paramId="lid" href="languageMovies.jsp" paramProperty="lid" />  		
 	</display:table>
@@ -55,6 +61,8 @@
 
 <c:if test="${Genres.size() > 0}" >  
 	<display:table name="Genres" class='dataTable' style="width:60%" pagesize="30">
+	<display:setProperty name="basic.msg.empty_list" value="" />
+	<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="gid" title="ID" sortable="true" />  		
   		<display:column property="genre" sortable="true"  />  		
 	</display:table>

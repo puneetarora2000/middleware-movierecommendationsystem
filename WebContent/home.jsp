@@ -20,10 +20,37 @@
 					<%= request.getAttribute("obj") %>
 					<%} %>
 				
+	<table width="100%">
+	<tr>
+	<td colspan="2">
 	<h1 align="center">Movie Recommendation System</h1>
-	<div id="level1">
-	<div id="level1_left">
-		<table class='simple'>
+	</td>
+	<td>
+	<% if(request.getSession().getAttribute("user") != null) {%>
+				<%= "Welcome " + request.getSession().getAttribute("user") %>
+					<br/><a href="Logout" style="textalign:right"> Logout </a>
+			<%} else { %>
+			<form action="Login" method="post">
+			<table border="0" align="right" >	
+			<tr>
+        	    <td>User ID :</td>	<td> <input type="text" name="userId" align="right"></td>				
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td> <input type="password" name="passwd" align="right"></td>
+			<tr>
+				<td><input type="submit" class="button" value="Login" align="right"></td>
+				<td><a href="<%=request.getContextPath()%>/SignUp">Sign up</a></td>
+			</tr>
+				</table>
+				</form>
+			<% } %>
+	
+	</td>
+	</tr>
+	<tr>
+	<td>	
+	<table class='simple'>
 			<tr>
 				<td>
 					<form action="Search" onSubmit="return validateForm(this)" name="actor">
@@ -50,36 +77,66 @@
 			</tr>
 			
 		</table>
-	   </div>
+	   </td>
+	   <td>
+	  <table class="simple">
+      <tr><td>
+      <form action="" method="post">
+                        Mood : <select name="mood">
+                                <option value="FeelGood" selected="selected">Feel Good</option>
+                                <option value="Witty">Witty</option>
+                                <option value="Rough">Rough</option>
+                                <option value="ThoughtProvoking">Thought Provoking</option>
+                                <option value="Exciting">Exciting</option>
+                                <option value="MindBending">Mind Bending</option>
+                            </select>
+                        <input type="submit" class="button" value="Submit">
+    </form>
+      </td></tr>
+      
+      <tr><td>
+      <form action="" method="post">
+                        Movie Duration : <select name="duration">
+                                <option value="1" selected="selected">1 Hr</option>
+                                <option value="130">1 Hr 30 Min</option>
+                                <option value="2">2 Hr</option>
+                                <option value="230">2 Hr 30 Min</option>
+                                <option value="3">3 Hr</option>
+                            </select>
+                        <input type="submit" class="button" value="Submit">
+    </form>
+      </td></tr>
+      
+      <tr><td>
+      <form action="" method="post">
+                        Time/Period Duration : <select name="period">
+                                <option value="90s" selected="selected">Latest</option>
+                                <option value="20s">20s</option>
+                                <option value="30s">30s</option>
+                                <option value="Ancient">Ancient History</option>
+                                <option value="Middle">Middle Ages</option>
+                            </select>
+                        <input type="submit" class="button" value="Submit">
+    </form>
+      </td></tr>
+      
+      </table>
+	   
+	   </td>
+	   <td>
+	   <table align="center">
+	   <tr>
+	   <td><a href="<%=request.getContextPath()%>/topMoviesServlet" > Get Top 20 Movies</a></td>
+	   <tr><td><a href="UpcomingMovies" style="textalign:right">UpcomingMovies</a></td></tr>
+	   <tr><td><a href="NowPlayingMovies" style="textalign:right">NowPlayingMovies</a></td></tr>
+	   <tr><td><a href="ShowRecomendation" style="textalign:right">Your Recommendations</a></td></tr></table>
+	   </td>
+	   </tr>
+	   </table>
 	  
-        <div id="level1_right" style="padding-top:0px">
-        	<% if(request.getSession().getAttribute("user") != null) {%>
-					<%= "Welcome " + request.getSession().getAttribute("user") %>
-					<br/><a href="Logout" style="textalign:right"> Logout </a>
-			<%} else { %>
-			<form action="Login" method="post">
-			<table border="0" align="right" >	
-			<tr>
-        	    <td>User ID :</td>
-        	    <td> <input type="text" name="userId" align="right"></td>				
-			</tr>
-			<tr>
-				<td>Password :</td>
-				<td> <input type="password" name="passwd" align="right"></td>
-			<tr>
-				<td><input type="submit" class="button" value="Login" align="right"></td>
-				<td><a href="<%=request.getContextPath()%>/SignUp">Sign up</a></td>
-			</tr>
-				</table>
-				</form>
-			<% } %>
-           <br/><br/>
-        </div>
-    </div>
-    <a href="<%=request.getContextPath()%>/topMoviesServlet" style="margin-left:280px;"> Get Top 20 Movies</a></br></br>
-    <a href="<%=request.getContextPath()%>/upComingMoviesServlet" style="margin-left:280px;"> Upcoming Movies</a></br></br>
-    <a href="<%=request.getContextPath()%>/nowPlayingMoviesServlet" style="margin-left:280px;"> Now Playing Movies</a></br></br>
-    
-    
+        
+        	
+           
+   
 </body>
 </html>

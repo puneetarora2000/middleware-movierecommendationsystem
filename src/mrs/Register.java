@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
 import com.mongodb.DB;
@@ -32,6 +34,7 @@ public class Register extends  HttpServlet {
 			String age = request.getParameter("age");
 			String lang = request.getParameter("lang");
 			String loc = request.getParameter("loc");
+			String genre = request.getParameter("genre");
 			
 			Mongo m = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
 			 m.setWriteConcern(WriteConcern.SAFE);
@@ -48,6 +51,7 @@ public class Register extends  HttpServlet {
 	        doc.put("age", age);
 	        doc.put("lang", lang);
 	        doc.put("loc", loc);
+	        doc.put("genre",genre);
 
 	        //favMovies is used to store the users top list of movies
 	        BasicDBList favMovies = new BasicDBList();
@@ -59,7 +63,7 @@ public class Register extends  HttpServlet {
 	        coll.insert(doc);
 			
 	        //mesg is just used for debugging purpose . will be  removed later
-			request.setAttribute("mesg", "added the values in mongo db");
+			request.setAttribute("mesg", "adding movies data");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
 			dispatcher.forward(request, response);
 		}	

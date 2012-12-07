@@ -30,7 +30,7 @@ function validateForm(thisform)
 		break;
 	case "language" :
 	
-		if((thisform.language ==  null )|| (thisform.language.value.length ==  0 ))
+		if((thisform.language.value ==  null )|| (thisform.language.value.length ==  0 ))
 		{
 		
 			alert("language Name Cannot be null");
@@ -43,3 +43,51 @@ function validateForm(thisform)
 	
 	return true;
 }
+
+function checkSignup(thisform)
+{
+	
+	//alert(thisform.name);
+
+		
+		if((thisform.userId.value ==  null )|| (thisform.userId.value.length ==  0 ))
+		{
+			
+			alert("User Id Cannot be null");
+			return false;
+		}
+		if((thisform.email.value ==  null )|| (thisform.email.value.length ==  0 ))
+		{
+			
+			alert("Email cannot be null");
+			return false;
+		}
+		if((thisform.passwd.value ==  null )|| (thisform.passwd.value.length ==  0 ))
+		{
+		
+			alert("Password Cannot be null");
+			return false;
+		}
+		if((thisform.firstName.value ==  null )|| (thisform.firstName.value.length ==  0 ))
+		{
+		
+			alert("First Name Cannot be null");
+			return false;
+		}
+		if((thisform.lastName.value ==  null )|| (thisform.lastName.value.length ==  0 ))
+		{
+		
+			alert("Password Cannot be null");
+			return false;
+		}
+		if((thisform.age.value ==  null )|| (thisform.age.value.length ==  0 ) || (thisform.age.value == NaN))
+		{
+		
+			alert("Age entered is invalid");
+			return false;
+		}
+	
+	
+	return true;
+}
+

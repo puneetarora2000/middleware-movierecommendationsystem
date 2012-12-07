@@ -23,6 +23,8 @@
 	<c:if test="${item.aid == aid}" > 			
 		
 	<display:table name="${item.movies}" class='dataTable' style="width:60%" pagesize="30">
+	<display:setProperty name="basic.msg.empty_list" value="" />
+	<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="title" sortable="true" paramId="movie" href="Search" paramProperty="title"/>
  	 </display:table>
 	</c:if>

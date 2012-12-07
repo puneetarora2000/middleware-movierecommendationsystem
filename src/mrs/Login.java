@@ -1,5 +1,7 @@
 package mrs;
 
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,18 @@ public class Login extends  HttpServlet {
 					msg = "User logged in";
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user", userId);
+					
+					ArrayList favMovie = (ArrayList) obj.get("favMovies");
+					ArrayList<String> movieDetails = new ArrayList<String>();
+					
+					for (Object mid : favMovie) {
+						BasicDBObject element =  (BasicDBObject)mid;			
+						String movieName = element.get("id").toString();
+						movieDetails.add(movieName);
+					}
+					
+					session.setAttribute("favMovies",movieDetails);
+
 				} else
 					msg = "Wrong password";
 			}

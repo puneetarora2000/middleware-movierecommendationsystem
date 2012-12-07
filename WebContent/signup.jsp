@@ -11,18 +11,44 @@
 <jsp:include page="home.jsp"></jsp:include>
 <br/>
 <div id="level1_right">
-	<form action="Register" method="post">
+	<form action="Register" method="post" name="register">
 					    User ID : <input type="text" name="userId"><br/><br/>
 					    Email : <input type="text" name="email"><br/><br/>
 					    Password : <input type="password" name="passwd"><br/><br/>
 					    First Name : <input type="text" name="firstName"><br/><br/>
 					    Last Name : <input type="text" name="lastName"><br/><br/>
 					    Age : <input type="text" name="age"><br/><br/>
-					    Gender: <input type="radio" name="gender" value="male">Male<br>
+					    Gender: <input type="radio" name="gender" value="male" checked="checked">Male
 						<input type="radio" name="gender" value="female">Female<br/>
-						Language : <input type="text" value="lang"><br/><br/>
-						Location : <input type="text" value="loc"><br/><br/>
-					    <input type="submit" class="button" value="Register">
+						Language : 
+							<select name="lang">
+                                <option value="English" selected="selected">English</option>
+                                <option value="French">French</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="German">German</option>
+                                <option value="Mandarin">Mandarin</option>
+                            </select>
+						
+						<br/><br/>
+						Location :
+						<select name="loc">
+                                <option value="US" selected="selected">USA</option>
+                                <option value="Europe">Europe</option>
+                                <option value="Africa">Africa</option>
+                                <option value="Asia">Asia</option>
+                                <option value="France">France</option>
+                            </select>
+						
+						<br/><br/>
+						Genre : <select name="genre">
+                                <option value="Action" selected="selected">Action</option>
+                                <option value="Mystery">Mystery</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Documentary">Documentary</option>
+                                <option value="Animation">Animation</option>
+                            </select>
+					    <input type="submit" class="button" value="Register" onsubmit="return checkSignup(this);">
 	</form>
 </div>
 </body>
