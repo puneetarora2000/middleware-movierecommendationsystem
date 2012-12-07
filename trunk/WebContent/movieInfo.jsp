@@ -41,19 +41,26 @@ request.setAttribute("ob", session.getAttribute("ob"));
 <td width="60%">
 <c:forEach var="item" items="${Movies}">	
 	<c:if test="${item.mid == mid}" > 	
-		<display:table name="${item.actors}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+		<display:table name="${item.actors}" class='dataTable' style="width:60%" pagesize="30"> 
+		<display:setProperty name="basic.msg.empty_list" value="" />	
+		<display:setProperty name="paging.banner.all_items_found" value=""/> 	
  	 	<display:column property="fullname" sortable="true"  paramId="actor" href="Search" paramProperty="fullname"/> 	 	 	
  	</display:table>
  	
- 	<display:table name="${item.languages}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+ 	<display:table name="${item.languages}" class='dataTable' style="width:60%" pagesize="30"> 	
+ 	<display:setProperty name="basic.msg.empty_list" value="" /> 
+ 	<display:setProperty name="paging.banner.all_items_found" value=""/>	
  	 	<display:column property="language" sortable="true"  paramId="language" href="Search" paramProperty="language"/> 	 	 	
  	</display:table>
  	
- 	<display:table name="${item.genres}" class='dataTable' style="width:60%" pagesize="30"> 	 	
+ 	<display:table name="${item.genres}" class='dataTable' style="width:60%" pagesize="30"> 
+ 	<display:setProperty name="basic.msg.empty_list" value="" /> 
+ 	<display:setProperty name="paging.banner.all_items_found" value=""/>	 	
  	 	<display:column property="genre" sortable="true" /> 	 	 	
  	</display:table>
  	</c:if>
  </c:forEach>
+ 
 </td>
 
 <td width="40%">

@@ -27,4 +27,64 @@ dialect "java"
 		movie.updateMovieReview(m.getMid(),m.getReview());	
 end
 
+rule "Action"
+dialect "java"
+	when
+		m : Genre ( genre == "Action")
+	then
+		System.out.println("Inserting Recommendation for Action"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+rule "Mystery"
+dialect "java"
+	when
+		m : Genre ( genre == "Mystery")
+	then
+		System.out.println("Inserting Recommendation for Mystery"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+rule "Romance"
+dialect "java"
+	when
+		m : Genre ( genre == "Romance")
+	then
+		System.out.println("Inserting Recommendation for Romance"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+rule "Drama"
+dialect "java"
+	when
+		m : Genre ( genre == "Drama")
+	then
+		System.out.println("Inserting Recommendation for Drama"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+rule "Documentary"
+dialect "java"
+	when
+		m : Genre ( genre == "Documentary")
+	then
+		System.out.println("Inserting Recommendation for Documentary"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+rule "Animation"
+dialect "java"
+	when
+		m : Genre ( genre == "Animation")
+	then
+		System.out.println("Inserting Recommendation for Animation"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
 

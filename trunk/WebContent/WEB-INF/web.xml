@@ -55,31 +55,13 @@
   		<url-pattern>/Search</url-pattern> 
   </servlet-mapping>
   
-  <servlet> 
+    <servlet> 
   		<servlet-name>topMovies</servlet-name> 
   		<servlet-class>mrs.TopMoviesTMDBAPI</servlet-class> 
   </servlet> 
   <servlet-mapping> 
   		<servlet-name>topMovies</servlet-name>
   		<url-pattern>/topMoviesServlet</url-pattern> 
-  </servlet-mapping>
-  
-  <servlet> 
-  		<servlet-name>upComingMovies</servlet-name> 
-  		<servlet-class>mrs.UpcomingMovies</servlet-class> 
-  </servlet> 
-  <servlet-mapping> 
-  		<servlet-name>upComingMovies</servlet-name>
-  		<url-pattern>/upComingMoviesServlet</url-pattern> 
-  </servlet-mapping>
-  
-  <servlet> 
-  		<servlet-name>nowPlayingMovies</servlet-name> 
-  		<servlet-class>mrs.NowPlayingMovies</servlet-class> 
-  </servlet> 
-  <servlet-mapping> 
-  		<servlet-name>nowPlayingMovies</servlet-name>
-  		<url-pattern>/nowPlayingMoviesServlet</url-pattern> 
   </servlet-mapping>
   
    <servlet> 
@@ -98,6 +80,33 @@
   		<servlet-name>ReviewRating</servlet-name>
   		<url-pattern>/ReviewRating</url-pattern> 
   </servlet-mapping>
+  
+  <servlet> 
+  		<servlet-name>ShowRecomendation</servlet-name> 
+  		<servlet-class>mrs.ShowRecomendation</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>ShowRecomendation</servlet-name>
+  		<url-pattern>/ShowRecomendation</url-pattern> 
+  </servlet-mapping>
+   <servlet> 
+  		<servlet-name>NowPlayingMovies</servlet-name> 
+  		<servlet-class>mrs.NowPlayingMovies</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>NowPlayingMovies</servlet-name>
+  		<url-pattern>/NowPlayingMovies</url-pattern> 
+  </servlet-mapping>
+   <servlet> 
+  		<servlet-name>UpcomingMovies</servlet-name> 
+  		<servlet-class>mrs.UpcomingMovies</servlet-class> 
+  </servlet> 
+  <servlet-mapping> 
+  		<servlet-name>UpcomingMovies</servlet-name>
+  		<url-pattern>/UpcomingMovies</url-pattern> 
+  </servlet-mapping>
+  
+  
   
   
 </web-app>
