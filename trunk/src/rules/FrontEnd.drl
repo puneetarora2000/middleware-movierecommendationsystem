@@ -5,6 +5,14 @@ import drools.movieapi.MoviesApi;
 import drools.main.Message;
 import drools.message.RatingMessage;
 import drools.message.ReviewMessage;
+import drools.message.MovieAsPerson;
+import drools.message.User;
+import drools.message.Gender;
+import drools.message.Genre;
+import drools.message.Language;
+import drools.message.Location;
+import drools.message.TimePeriod;
+import drools.message.Duration;
 
 
 rule "MovieRating"
@@ -27,64 +35,381 @@ dialect "java"
 		movie.updateMovieReview(m.getMid(),m.getReview());	
 end
 
-rule "Action"
+rule "Age10"
+dialect "java"
+	when 
+		m : User (age < 16)
+	then
+		System.out.println("Inserting Recommendation "+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+rule "Age20"
+dialect "java"
+	when 
+		m : User (age > 15 && age < 26)
+	then
+		System.out.println("Inserting Recommendation for age 20"+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+rule "Age30"
+dialect "java"
+	when 
+		m : User (age > 25 && age < 36)
+	then
+		System.out.println("Inserting Recommendation for age 30"+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+
+rule "Age40"
+dialect "java"
+	when 
+		m : User (age > 35 && age < 46)
+	then
+		System.out.println("Inserting Recommendation for age 40"+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+rule "Age50"
+dialect "java"
+	when 
+		m : User (age > 45 && age < 56)
+	then
+		System.out.println("Inserting Recommendation for age 50"+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+rule "Age60"
+dialect "java"
+	when 
+		m : User (age > 55)
+	then
+		System.out.println("Inserting Recommendation for age 60"+ m.getUserId());
+		MoviesApi movie = new MoviesApi();
+		Integer ageObject = new Integer(m.getAge()); 
+		movie.insertSingleRecommendation("Age",ageObject.toString(),m.getUserId());
+		insert(new Gender(m.getUserId(),m.getGender()));
+		insert(new Genre(m.getUserId(),m.getGenre()));
+		insert(new Language(m.getUserId(),m.getLang()));
+		insert(new Location(m.getUserId(),m.getLoc()));
+		insert(new TimePeriod(m.getUserId(),m.getTimePeriod()));
+		insert(new Duration(m.getUserId(),m.getDuration()));
+end
+
+//Gender
+rule "GenderMale"
+dialect "java"
+	when 
+		m : Gender (gender == "male")
+	then
+		System.out.println("Inserting Recommendation for male"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Gender",m.getGender(),m.getUserId());
+end
+
+rule "GenderFemale"
+dialect "java"
+	when 
+		m : Gender (gender == "female")
+	then
+		System.out.println("Inserting Recommendation for female"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Gender",m.getGender(),m.getUserId());
+end
+
+//Language
+
+rule "English"
 dialect "java"
 	when
-		m : Genre ( genre == "Action")
+		m : Language ( language == "English")
+		
 	then
-		System.out.println("Inserting Recommendation for Action"+ m.getUserId());
+	System.out.println("Inserting Recommendation for English"+ m.getUserId());
 		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
+end
+
+rule "Hindi"
+dialect "java"
+	when
+		m : Language ( language == "Hindi")
+		
+	then
+	System.out.println("Inserting Recommendation for Hindi"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
+end
+
+
+rule "Mandrin"
+dialect "java"
+	when
+		m : Language ( language == "Mandrin")
+		
+	then
+	System.out.println("Inserting Recommendation for Mandrin"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
+end
+
+
+rule "German"
+dialect "java"
+	when
+		m : Language ( language == "German")
+		
+	then
+	System.out.println("Inserting Recommendation for German"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
+end
+
+
+rule "French"
+dialect "java"
+	when
+		m : Language ( language == "French")
+		
+	then
+	System.out.println("Inserting Recommendation for French"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
+end
+
+
+
+//Location
+rule "US"
+dialect "java"
+	when
+		m : Location ( location == "US")
+		
+	then
+	System.out.println("Inserting Recommendation for US"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Location",m.getLocation(),m.getUserId());
+end
+
+rule "Europe"
+dialect "java"
+	when
+		m : Location ( location == "Europe")
+		
+	then
+	System.out.println("Inserting Recommendation for Europe"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Location",m.getLocation(),m.getUserId());
+end
+
+rule "France"
+dialect "java"
+	when
+		m : Location ( location == "France")
+		
+	then
+	System.out.println("Inserting Recommendation for France"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Location",m.getLocation(),m.getUserId());
+end
+
+rule "Asia"
+dialect "java"
+	when
+		m : Location ( location == "Asia")
+		
+	then
+	System.out.println("Inserting Recommendation for Asia"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Location",m.getLocation(),m.getUserId());
+end
+
+rule "Africa"
+dialect "java"
+	when
+		m : Location ( location == "Africa")
+		
+	then
+	System.out.println("Inserting Recommendation for Africa"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Location",m.getLocation(),m.getUserId());
+end
+
+
+//Genre
+
+rule "Action"
+dialect "java"
+    when
+        m : Genre ( genre == "Action")
+    then
+        System.out.println("Inserting Recommendation for Action"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
 end
 
 rule "Mystery"
 dialect "java"
-	when
-		m : Genre ( genre == "Mystery")
-	then
-		System.out.println("Inserting Recommendation for Mystery"+ m.getUserId());
-		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+    when
+        m : Genre ( genre == "Mystery")
+    then
+        System.out.println("Inserting Recommendation for Mystery"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
 end
 
 rule "Romance"
 dialect "java"
-	when
-		m : Genre ( genre == "Romance")
-	then
-		System.out.println("Inserting Recommendation for Romance"+ m.getUserId());
-		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+    when
+        m : Genre ( genre == "Romance")
+    then
+        System.out.println("Inserting Recommendation for Romance"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
 end
 
 rule "Drama"
 dialect "java"
-	when
-		m : Genre ( genre == "Drama")
-	then
-		System.out.println("Inserting Recommendation for Drama"+ m.getUserId());
-		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+    when
+        m : Genre ( genre == "Drama")
+    then
+        System.out.println("Inserting Recommendation for Drama"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
 end
 
 rule "Documentary"
 dialect "java"
-	when
-		m : Genre ( genre == "Documentary")
-	then
-		System.out.println("Inserting Recommendation for Documentary"+ m.getUserId());
-		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+    when
+        m : Genre ( genre == "Documentary")
+    then
+        System.out.println("Inserting Recommendation for Documentary"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
 end
 
 rule "Animation"
 dialect "java"
+    when
+        m : Genre ( genre == "Animation")
+    then
+        System.out.println("Inserting Recommendation for Animation"+ m.getUserId());
+
+        MoviesApi movie = new MoviesApi(); 
+        movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+end
+
+//Duration
+rule "1"
+dialect "java"
 	when
-		m : Genre ( genre == "Animation")
+		m : Duration ( duration == "1")
+		
 	then
-		System.out.println("Inserting Recommendation for Animation"+ m.getUserId());
+	System.out.println("Inserting Recommendation for 1"+ m.getUserId());
 		MoviesApi movie = new MoviesApi(); 
-		movie.insertSingleRecommendation("Genre",m.getGenre(),m.getUserId());
+		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
+end
+
+rule "130"
+dialect "java"
+	when
+		m : Duration ( duration == "130")
+		
+	then
+	System.out.println("Inserting Recommendation for 130"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
+end
+
+rule "2"
+dialect "java"
+	when
+		m : Duration ( duration == "2")
+		
+	then
+	System.out.println("Inserting Recommendation for 2"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
+end
+
+rule "230"
+dialect "java"
+	when
+		m : Duration ( duration == "230")
+		
+	then
+	System.out.println("Inserting Recommendation for 230"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
+end
+
+rule "330"
+dialect "java"
+	when
+		m : Duration ( duration == "330")
+		
+	then
+	System.out.println("Inserting Recommendation for 330"+ m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
+end
+
+rule "MovieAsPersonLastName"
+dialect "java"
+	when 
+		m : MovieAsPerson ()
+	then
+		System.out.println("Movie as person: "+ m.getMid());
+		MoviesApi movie = new MoviesApi();
+		movie.MovieAsPerson(m.getMid(),m.getUsername());
 end
 
 
