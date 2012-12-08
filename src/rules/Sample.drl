@@ -12,7 +12,6 @@ rule "UpcomingMoviesUpdate"
     	System.out.println("Updating DB");
     	MoviesApi moviesApi=new MoviesApi();
 		moviesApi.upcomingMovies();
-		
 end
 
 rule "NowPlayingMoviesUpdate"
