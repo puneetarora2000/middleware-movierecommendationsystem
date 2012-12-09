@@ -22,7 +22,6 @@ public class Search extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unchecked")
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	{
 		try {
@@ -36,33 +35,19 @@ public class Search extends HttpServlet {
 			
 			System.out.println("actor " + actor);			
 			System.out.println("movie "+ movie);			
-			Session session = HibernateUtil.currentSession();
-			session.beginTransaction();
-			Query query;
+			
 			HttpSession httpSession = request.getSession(true);
 			httpSession.setAttribute("actorsList",null);
 			httpSession.setAttribute("moviesList",null);
 			httpSession.setAttribute("languagesList",null);
 			httpSession.setAttribute("genresList",null);
 			
+			
+			
 			if(movie!= null && movie.length()>0)
 			{
-				movie.replaceAll("\\+", " ");
-				System.out.print("in movies");
-				query = session.createQuery("from "+ Movies.class.getName()+" where title like '"+movie+"%' ");	query.setMaxResults(100);
-				session.getTransaction().commit();
-				List<Movies> result = (List<Movies>) query.list();	
-				int i=0;
-				for (Movies m:result){
-					i++;
-					m.getLanguages().size();
-					m.getActors().size();
-					m.getGenres().size();
-					if(i==30)
-						break;				
-					
-				}
 				
+				List<Movies> result= getMoviesList(movie);
 				httpSession.setAttribute("moviesList", result);				
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/details.jsp");
 				dispatcher.forward(request, response);
@@ -70,68 +55,21 @@ public class Search extends HttpServlet {
 			}
 			else if(actor!=null && actor.length()>0)
 			{
-				actor.replaceAll("\\+", " ");
-				System.out.println("in actor");
-				query = session.createQuery("from "+ Actors.class.getName()+" where fullname like '"+actor+"%' ");
-				query.setMaxResults(100);
-				session.getTransaction().commit();
-				List<Actors> result = (List<Actors>) query.list();								
+				List<Actors> result= getActorsList(actor);
 				httpSession.setAttribute("actorsList", result);
-				int i=0;
-					for (Actors a:result){
-					
-//					System.out.println(a.getMovies().size());
-						a.getMovies().size();
-						i++;
-						if(i==30)
-							break;
-					
-				}
-					
-				
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/details.jsp");
 				dispatcher.forward(request, response);
 			}
 			else if(lang!=null && lang.length()>0)
 			{
-				lang.replaceAll("\\+", " ");				
-				System.out.println("in language");
-				query = session.createQuery("from "+ Language.class.getName()+" where language like '"+lang+"%' ");
-				query.setMaxResults(100);
-				session.getTransaction().commit();
-				List<Language> result = (List<Language>) query.list();	
-				int i=0;
-				for (Language l:result){
-					l.getMovies().size();
-					i++;
-					if(i==30)
-						break;
-//					System.out.println(l.getMovies().size());
-					
-				}
-				
+				List<Language> result = getLanguageList(lang);
 				httpSession.setAttribute("languagesList", result);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/details.jsp");
 				dispatcher.forward(request, response);
 			}
 			else if(genre!=null && genre.length()>0)
 			{
-				System.out.println("in genre");
-				query = session.createQuery("from "+ Genres.class.getName()+" where genre like '"+genre+"%' ");
-				query.setMaxResults(100);
-				session.getTransaction().commit();
-				List<Genres> result = (List<Genres>) query.list();	
-				int i=0;
-				for (Genres g:result){
-					
-//					System.out.println(g.getMovies().size());
-					
-					g.getMovies().size();
-					if(i==2)
-						break;
-					
-				}
-				
+				List<Genres> result = getGenresList(genre);
 				httpSession.setAttribute("genresList", result);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/details.jsp");
 				dispatcher.forward(request, response);
@@ -143,7 +81,7 @@ public class Search extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 
-			session.clear();
+			
 			
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());
@@ -151,4 +89,106 @@ public class Search extends HttpServlet {
 	}
 
 
+	public List<Movies> getMoviesList(String movie)
+	{
+		movie.replaceAll("\\+", " ");
+		System.out.print("in movies");
+		Session session = HibernateUtil.currentSession();
+		session.beginTransaction();
+		Query query;
+		query = session.createQuery("from "+ Movies.class.getName()+" where title like '"+movie+"%' ");	query.setMaxResults(100);
+		session.getTransaction().commit();
+		@SuppressWarnings("unchecked")
+		List<Movies> result = (List<Movies>) query.list();	
+		int i=0;
+		for (Movies m:result){
+			i++;
+			m.getLanguages().size();
+			m.getActors().size();
+			m.getGenres().size();
+			if(i==30)
+				break;				
+			
+		}
+		session.clear();
+		return result;
+		
+	}
+	
+	public List<Actors> getActorsList(String actor)
+	{
+		actor.replaceAll("\\+", " ");
+		System.out.println("in actor");
+		Session session = HibernateUtil.currentSession();
+		session.beginTransaction();
+		Query query;		
+		query = session.createQuery("from "+ Actors.class.getName()+" where fullname like '"+actor+"%' ");
+		query.setMaxResults(100);
+		session.getTransaction().commit();
+		@SuppressWarnings("unchecked")
+		List<Actors> result = (List<Actors>) query.list();								
+		
+		int i=0;
+			for (Actors a:result){
+			
+//			System.out.println(a.getMovies().size());
+				a.getMovies().size();
+				i++;
+				if(i==30)
+					break;
+			
+		}
+			session.clear();
+			return result;
+			
+	
+	}
+	
+	public List<Language> getLanguageList(String lang)
+	{
+		Session session = HibernateUtil.currentSession();
+		session.beginTransaction();
+		Query query;
+		lang.replaceAll("\\+", " ");				
+		System.out.println("in language");
+		query = session.createQuery("from "+ Language.class.getName()+" where language like '"+lang+"%' ");
+		query.setMaxResults(100);
+		session.getTransaction().commit();
+		@SuppressWarnings("unchecked")
+		List<Language> result = (List<Language>) query.list();	
+		int i=0;
+		for (Language l:result){
+			l.getMovies().size();
+			i++;
+			if(i==30)
+				break;
+		
+		}
+		session.clear();
+		return result;
+	}
+	
+	public List<Genres> getGenresList(String genre)
+	{
+		Session session = HibernateUtil.currentSession();
+		session.beginTransaction();
+		Query query;
+		System.out.println("in genre");
+		query = session.createQuery("from "+ Genres.class.getName()+" where genre like '"+genre+"%' ");
+		query.setMaxResults(100);
+		session.getTransaction().commit();
+		@SuppressWarnings("unchecked")
+		List<Genres> result = (List<Genres>) query.list();	
+		int i=0;
+		for (Genres g:result){
+			g.getMovies().size();
+			if(i==2)
+				break;
+			
+		}
+		session.clear();
+		return result;
+	
+	}
+	
 }
