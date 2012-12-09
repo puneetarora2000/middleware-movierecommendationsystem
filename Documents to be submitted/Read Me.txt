@@ -1,0 +1,29 @@
+This project (Movie Recommendation)	has three modules in it. Here is the description of all the files what they are meant for
+
+Module - 1 - "The web application"
+MovieRecommendationSystem.war -> This war is the central application having the User Interface and has to be placed in a server.
+Deploy &Happy path demo -> MovieRecommendation.avi -> Shows a simple video on how to run the jar
+MovieRecommendationSystem.zip -> This is the source code for this module 
+
+
+Module - 2 - "Time based Rules"
+DroolsMovieRecommendation.jar -> This is the jar file meant to run the "Time based Rules" for the project
+Steps to execute Time Based Rules.avi -> Shows a simple video on how to run the jar
+DroolsMovieRecommendation.zip -> This is the source code for this module
+
+Module - 3 - "Test cases"
+testcase.jar -> This has the testcases
+Steps to Execute Test Cases .wmv -> This video shows simple example to run the testcases
+Note: To see the source code for test cases, either we can unjar or see the class file in "MovieRecommendationSystem.zip"
+		The class name is src.testcases.Testcases.java
+		
+
+Please refer the documentation for installation and further steps.
+
+This is the project submitted by Group B
+				- Divya Muppa
+				- Bala Krishna Reddy Ramidi
+				- Vishnu Gajendran
+				- Navyatha Reddy Bondugula
+				- Manogna Puchhalapalli
+				- Aditya Vutukuri
