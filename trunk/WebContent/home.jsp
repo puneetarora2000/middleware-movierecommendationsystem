@@ -102,7 +102,7 @@
                                 <option value="130">1 Hr 30 Min</option>
                                 <option value="2">2 Hr</option>
                                 <option value="230">2 Hr 30 Min</option>
-                                <option value="3">3 Hr</option>
+                                <option value="330">3 Hr</option>
                             </select>
                         <input type="submit" class="button" value="Submit">
     </form>
