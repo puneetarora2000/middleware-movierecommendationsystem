@@ -14,10 +14,15 @@ import mrs.*;
 import mrs.database.*;
 
 import org.junit.Test;
+import org.junit.runner.JUnitCore;
 
 import drools.movieapi.MoviesApi;
 
 public class TestCases {
+	
+	public static void main (String args[]){
+		JUnitCore.main("testcases.TestCases");
+	}
 	
 	@Test
 	public void LoginTest() throws Exception {
