@@ -18,7 +18,8 @@ Note: To see the source code for test cases, either we can unjar or see the clas
 		The class is src/testcases/Testcases.java
 		
 
-Please refer the documentation for installation and further steps.
+Please refer the documentation (Documentation - Movie Recommendation System - Group B.doc) for installation and further steps.
+					JMeter_Documentation.doc - Results for the performance tests on the web applications
 
 This is the project submitted by Group B
 				- Divya Muppa
