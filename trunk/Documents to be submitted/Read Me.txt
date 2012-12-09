@@ -1,5 +1,7 @@
 This project (Movie Recommendation)	has three modules in it. Here is the description of all the files what they are meant for
 
+Dependency - Please make sure that you have JAVA 7 on your system
+
 Module - 1 - "The web application"
 MovieRecommendationSystem.war -> This war is the central application having the User Interface and has to be placed in a server.
 Deploy &Happy path demo - MovieRecommendation.avi -> Shows a simple video on how to run the jar
@@ -19,7 +21,7 @@ Note: To see the source code for test cases, either we can unjar or see the clas
 		
 
 Please refer the documentation (Documentation - Movie Recommendation System - Group B.doc) for installation and further steps.
-					JMeter_Documentation.doc - Results for the performance tests on the web applications
+					JMeter_Documentation.doc - Results for the performance tests on the web application
 
 This is the project submitted by Group B
 				- Divya Muppa
