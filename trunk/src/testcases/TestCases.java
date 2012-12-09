@@ -5,11 +5,13 @@ import static org.mockito.Mockito.*;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import mrs.*;
+import mrs.database.*;
 
 import org.junit.Test;
 
@@ -299,29 +301,6 @@ public class TestCases {
 	assertEquals(true, result.size()>0);
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
