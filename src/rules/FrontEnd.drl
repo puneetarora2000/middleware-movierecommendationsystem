@@ -184,13 +184,13 @@ dialect "java"
 end
 
 
-rule "Mandrin"
+rule "Mandarin"
 dialect "java"
 	when
-		m : Language ( language == "Mandrin")
+		m : Language ( language == "Mandarin")
 		
 	then
-	System.out.println("Inserting Recommendation for Mandrin"+ m.getUserId());
+	System.out.println("Inserting Recommendation for Mandarin"+ m.getUserId());
 		MoviesApi movie = new MoviesApi(); 
 		movie.insertSingleRecommendation("Language",m.getLanguage(),m.getUserId());
 end

@@ -284,8 +284,19 @@ public class TestCases {
 		assertEquals(true,new MoviesApi().insertSingleRecommendation("Period","Middle","testuser"));
 	}
 	
+	
+	@Test
+	public void testReview() throws UnknownHostException, MalformedURLException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		assertEquals(true,new MoviesApi().updateMovieReview(23, "test review"));
+	}
+	
+	@Test
+	public void testRating() throws UnknownHostException, MalformedURLException, InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		assertEquals(true,new MoviesApi().updateMovieRating(23, 3));
+	}
+	
 
-@Test
+	@Test
 		public void SearchActorsTest() throws Exception {
 		HttpServletRequest mockRequest = (HttpServletRequest) mock(HttpServletRequest.class);
 		HttpSession mockSession = mock(HttpSession.class);
