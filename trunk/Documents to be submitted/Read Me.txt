@@ -2,7 +2,7 @@ This project (Movie Recommendation)	has three modules in it. Here is the descrip
 
 Module - 1 - "The web application"
 MovieRecommendationSystem.war -> This war is the central application having the User Interface and has to be placed in a server.
-Deploy &Happy path demo -> MovieRecommendation.avi -> Shows a simple video on how to run the jar
+Deploy &Happy path demo - MovieRecommendation.avi -> Shows a simple video on how to run the jar
 MovieRecommendationSystem.zip -> This is the source code for this module 
 
 
