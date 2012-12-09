@@ -402,14 +402,6 @@ dialect "java"
 		movie.insertSingleRecommendation("Duration",m.getDuration(),m.getUserId());
 end
 
-rule "MovieAsPersonLastName"
-dialect "java"
-	when 
-		m : MovieAsPerson ()
-	then
-		System.out.println("Movie as person: "+ m.getMid());
-		MoviesApi movie = new MoviesApi();
-		movie.MovieAsPerson(m.getMid(),m.getUsername());
-end
+
 
 

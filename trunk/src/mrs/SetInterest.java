@@ -13,6 +13,8 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.WriteConcern;
 
+import drools.main.DroolsApi;
+
 public class SetInterest extends  HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,19 +37,34 @@ public class SetInterest extends  HttpServlet {
 			query.put("userId", userId);
 			
 			DBObject user = coll.findOne(query);
-		//	DBObject moodObj = (DBObject)user.get("mood");
-		/*	if(moodObj == null) {
-				System.out.println("inside!");
-				user.put("mood", mood);
-				coll.update(user,user);
-				
-			} else {*/
+		
+			
+			if(!(mood == null) && (!mood.isEmpty()))
+					
+					{
 				BasicDBObject movieUpdate = new BasicDBObject().append("$set", 
 						new BasicDBObject().append("mood", mood));
 				coll.update(user, movieUpdate);
-			//}
-				
-	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
+			}
+			else if(!(period == null) &&(!period.isEmpty())){
+				BasicDBObject movieUpdate = new BasicDBObject().append("$set", 
+						new BasicDBObject().append("period", period));
+				coll.update(user, movieUpdate);
+			}
+			else if(!(duration == null) &&(!duration.isEmpty())){
+				BasicDBObject movieUpdate = new BasicDBObject().append("$set", 
+						new BasicDBObject().append("duration", duration));
+				coll.update(user, movieUpdate);
+			}
+			
+			DroolsApi test = new DroolsApi(); // create this object, you should maintain this object for the entire session
+			
+			test.createKnowledgeBase();
+			test.insertRecommendation(userId);//pass movieID(300 here)	 and the user rating(2.45)	as parameter to this function
+			test.fireRules(); //call this function as it is.
+		
+		
+	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShowRecomendation");
 		    dispatcher.forward(request, response);
 		}
      	catch(Exception ex) {
