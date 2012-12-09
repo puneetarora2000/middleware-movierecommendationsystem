@@ -278,6 +278,78 @@ public class TestCases {
 	}
 	
 
+@Test
+		public void SearchActorsTest() throws Exception {
+		HttpServletRequest mockRequest = (HttpServletRequest) mock(HttpServletRequest.class);
+		HttpSession mockSession = mock(HttpSession.class);
+		when (mockRequest.getSession(true)).thenReturn(mockSession);
+		mrs.Search search = new Search();
+		ArrayList<Actors> result =(ArrayList<Actors>) search.getActorsList("b");
+		assertEquals(true, result.size()>0);
+		
+		}
+	@Test
+	public void SearchMoviesTest() throws Exception {
+	HttpServletRequest mockRequest = (HttpServletRequest) mock(HttpServletRequest.class);
+	HttpSession mockSession = mock(HttpSession.class);
+	when (mockRequest.getSession(true)).thenReturn(mockSession);
+	mrs.Search search = new Search();
+	ArrayList<Movies> result =(ArrayList<Movies>) search.getMoviesList("b");
+	
+	assertEquals(true, result.size()>0);
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Test
+	public void SearchLanguagesTest() throws Exception {
+	HttpServletRequest mockRequest = (HttpServletRequest) mock(HttpServletRequest.class);
+	HttpSession mockSession = mock(HttpSession.class);
+	when (mockRequest.getSession(true)).thenReturn(mockSession);
+	mrs.Search search = new Search();
+	ArrayList<Language> result =(ArrayList<Language>) search.getLanguageList("English");
+	assertEquals(true, result.size()>0);
+	
+	}
+	
+	@Test
+	public void SearchGenresTest() throws Exception {
+	HttpServletRequest mockRequest = (HttpServletRequest) mock(HttpServletRequest.class);
+	HttpSession mockSession = mock(HttpSession.class);
+	when (mockRequest.getSession(true)).thenReturn(mockSession);
+	mrs.Search search = new Search();
+	ArrayList<Genres> result =(ArrayList<Genres>) search.getGenresList("Docu");
+	assertEquals(true, result.size()>0);
+	
+	}
+	
+
 	
 	
 }
