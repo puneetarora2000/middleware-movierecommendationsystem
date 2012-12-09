@@ -404,4 +404,65 @@ end
 
 
 
+rule "90s"
+dialect "java"
+	when
+		m : TimePeriod ( timePeriod == "90s")
+		
+	then
+	System.out.println("Inserting Recommendation for 90s " + m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Period",m.getTimePeriod(),m.getUserId());
+end
+
+rule "20s"
+dialect "java"
+	when
+		m : TimePeriod ( timePeriod == "20s")
+		
+	then
+	System.out.println("Inserting Recommendation for 20s " + m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Period",m.getTimePeriod(),m.getUserId());
+end
+
+rule "30s"
+dialect "java"
+	when
+		m : TimePeriod ( timePeriod == "30s")
+		
+	then
+	System.out.println("Inserting Recommendation for 30s " + m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Period",m.getTimePeriod(),m.getUserId());
+end
+
+rule "Ancient"
+dialect "java"
+	when
+		m : TimePeriod ( timePeriod == "Ancient")
+		
+	then
+	System.out.println("Inserting Recommendation for Ancient " + m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Period",m.getTimePeriod(),m.getUserId());
+end
+
+
+
+rule "Middle"
+dialect "java"
+	when
+		m : TimePeriod ( timePeriod == "Middle")
+		
+	then
+	System.out.println("Inserting Recommendation for Middle " + m.getUserId());
+		MoviesApi movie = new MoviesApi(); 
+		movie.insertSingleRecommendation("Period",m.getTimePeriod(),m.getUserId());
+end
+
+
+
+
+
 
