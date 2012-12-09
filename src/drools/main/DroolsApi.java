@@ -65,7 +65,7 @@ public class DroolsApi {
 	
 	private static KnowledgeBase readKnowledgeBase() throws Exception {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(ResourceFactory.newClassPathResource("FrontEnd.drl"), ResourceType.DRL);
+        kbuilder.add(ResourceFactory.newClassPathResource("rules/FrontEnd.drl"), ResourceType.DRL);
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
         if (errors.size() > 0) {
             for (KnowledgeBuilderError error: errors) {

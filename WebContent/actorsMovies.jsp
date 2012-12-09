@@ -27,5 +27,5 @@
 	<display:setProperty name="paging.banner.all_items_found" value=""/>
  	 	<display:column property="title" sortable="true" paramId="movie" href="Search" paramProperty="title"/>
  	 </display:table>
-	</c:if>
+	</c:if> 
  </c:forEach>

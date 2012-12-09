@@ -5,6 +5,9 @@
 <head>
 <link rel="stylesheet" href="css/displaytag.css" type="text/css"/> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="js/clientValidation.js">
+</script>
+
 <title>Register for Movie Recommendation System</title>
 </head>
 <body>

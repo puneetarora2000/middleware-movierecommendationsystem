@@ -3,13 +3,12 @@
 function validateForm(thisform)
 {
 	
-	alert(thisform.name);
+	//alert(thisform.name);
 	
 	switch(thisform.name)
 	
 	{
-	case "actor" :
-		
+	case "actor" :	
 		
 		
 		if((thisform.actor.value ==  null )|| (thisform.actor.value.length ==  0 ))
@@ -36,6 +35,24 @@ function validateForm(thisform)
 			alert("language Name Cannot be null");
 			return false;
 		}
+		break;
+		
+	case "login" :
+		
+		if((thisform.userId.value ==  null )|| (thisform.userId.value.length ==  0 ))
+		{
+		
+			alert("userId cannot be null");
+			return false;
+		}
+		
+		if((thisform.passwd.value ==  null )|| (thisform.passwd.value.length ==  0 ))
+		{
+		
+			alert("passwd cannot be null");
+			return false;
+		}
+		
 		break;
 	
 	}

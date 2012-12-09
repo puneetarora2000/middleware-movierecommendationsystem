@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -29,33 +33,42 @@ public class ShowRecomendation extends HttpServlet  {
 		try  {
 			
 			HttpSession session = request.getSession(true);
-			String userId = (String) session.getAttribute("userId");
+			String userId = (String) session.getAttribute("user");
 			
-			Mongo m = new Mongo("ec2-54-243-59-26.compute-1.amazonaws.com",27017);
-			 m.setWriteConcern(WriteConcern.SAFE);
-			DB db = m.getDB("UserProfile");
+			Mongo mongoInstance = MongoSingleton.getInstance();
+			DB db = mongoInstance.getDB("UserProfile");
 			DBCollection coll = db.getCollection("testCollection");
 			
 			BasicDBObject query = new BasicDBObject();
 			query.put("userId", userId);
 			
 			DBCursor cursor = coll.find(query);
+			BasicDBList ob = null;
+			JSONArray array = new JSONArray();
 			
-			String msg = "User not found";
 			while(cursor.hasNext()) {
 				DBObject obj = cursor.next();
-	
+				
 					ArrayList favMovie = (ArrayList) obj.get("favMovies");
 					ArrayList<String> movieDetails = new ArrayList<String>();
+					JSONObject arrayObj = new JSONObject();
 					
 					for (Object mid : favMovie) {
 						BasicDBObject element =  (BasicDBObject)mid;			
 						String movieName = element.get("title").toString();
 						movieDetails.add(movieName);
+						
+						
+						arrayObj = new JSONObject();
+						arrayObj.put("name",movieName );
+						array.put(arrayObj);
 					}
 					
-					session.setAttribute("favMovies",movieDetails);
+					
 				}
+			
+			
+			request.setAttribute("recommendationList", array);
 	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recommendation.jsp");
 		    dispatcher.forward(request, response);
 		}

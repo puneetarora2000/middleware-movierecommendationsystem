@@ -30,7 +30,7 @@
 				<%= "Welcome " + request.getSession().getAttribute("user") %>
 					<br/><a href="Logout" style="textalign:right"> Logout </a>
 			<%} else { %>
-			<form action="Login" method="post">
+			<form action="Login" method="post" onSubmit="return validateForm(this)" name="login">
 			<table border="0" align="right" >	
 			<tr>
         	    <td>User ID :</td>	<td> <input type="text" name="userId" align="right"></td>				
@@ -79,6 +79,7 @@
 		</table>
 	   </td>
 	   <td>
+	   <% if(request.getSession().getAttribute("user") != null) {%>	
 	  <table class="simple">
       <tr><td>
       <form action="SetInterest" method="get">
@@ -122,6 +123,8 @@
       
       </table>
 	   
+	   <%}%>
+	   
 	   </td>
 	   <td>
 	   <table align="center">
@@ -129,7 +132,10 @@
 	   <td><a href="<%=request.getContextPath()%>/topMoviesServlet" > Get Top 20 Movies</a></td>
 	   <tr><td><a href="UpcomingMovies" style="textalign:right">UpcomingMovies</a></td></tr>
 	   <tr><td><a href="NowPlayingMovies" style="textalign:right">NowPlayingMovies</a></td></tr>
-	   <tr><td><a href="ShowRecomendation" style="textalign:right">Your Recommendations</a></td></tr></table>
+	   <% if(request.getSession().getAttribute("user") != null) {%>				
+					<tr><td><a href="ShowRecomendation" style="textalign:right">Your Recommendations</a></td></tr>
+			<%}%>
+	   </table>
 	   </td>
 	   </tr>
 	   </table>

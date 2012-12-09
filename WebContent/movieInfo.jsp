@@ -55,7 +55,7 @@ request.setAttribute("ob", session.getAttribute("ob"));
  	
  	<display:table name="${item.genres}" class='dataTable' style="width:60%" pagesize="30"> 
  	<display:setProperty name="basic.msg.empty_list" value="" /> 
- 	<display:setProperty name="paging.banner.all_items_found" value=""/>	 	
+ 	<display:setProperty name="paging.banner.all_items_found" value=""/>	
  	 	<display:column property="genre" sortable="true" /> 	 	 	
  	</display:table>
  	</c:if>
@@ -84,8 +84,29 @@ request.setAttribute("ob", session.getAttribute("ob"));
 
 <% if(request.getSession().getAttribute("ob") != null ) { %>
 <tr>
+<td>
+<table style="width:60%" class="dataTable">
+<thead>
+<tr><th>Reviews:</th></tr>
+	</thead>
+<tbody>
+<c:forEach var="nameObj" items="${ob}"> 
+<c:if test="${not empty nameObj}">        		
+<tr class="odd">
+<td>
+<c:out value="${nameObj}"></c:out>
+</td>
+</tr>
+</c:if>
+</c:forEach>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- 
+	<tr>
 	<td>
-		<b>Reviews:</b>
+		<b></b>
 		<br>
 		<c:forEach var="nameObj" items="${ob}">  
         	<c:if test="${not empty nameObj}">
@@ -94,6 +115,8 @@ request.setAttribute("ob", session.getAttribute("ob"));
 		</c:forEach> 
 	</td>
 </tr>
+
+ -->
 <%} %>
 
 </table>
