@@ -15,7 +15,7 @@ Module - 3 - "Test cases"
 testcase.jar -> This has the testcases
 Steps to Execute Test Cases .wmv -> This video shows simple example to run the testcases
 Note: To see the source code for test cases, either we can unjar or see the class file in "MovieRecommendationSystem.zip"
-		The class name is src.testcases.Testcases.java
+		The class is src/testcases/Testcases.java
 		
 
 Please refer the documentation for installation and further steps.
