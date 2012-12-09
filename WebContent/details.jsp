@@ -1,3 +1,5 @@
+<%@page import="mrs.database.Language"%>
+<%@page import="mrs.database.Genres"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
@@ -20,7 +22,10 @@
 <% request.setAttribute( "Languages", session.getAttribute("languagesList") ); %> 
 <% request.setAttribute( "Genres", session.getAttribute("genresList") ); %> 
 
-<c:if test="${Movies.size() > 0}" >
+<%
+	List<Movies> moviesList = (List<Movies>)session.getAttribute("moviesList");
+if(moviesList!=null && moviesList.size() > 0){
+%>
 
 <display:table name="Movies" class='dataTable' style="width:60%" pagesize="30">
 <display:setProperty name="basic.msg.empty_list" value="" />
@@ -33,9 +38,12 @@
  	 	<display:column property="distribution" sortable="true" /> 	 	
  	</display:table>
 
-</c:if>
+<%} %>
 
-<c:if test="${Actors.size() > 0}" >  
+<%
+	List<Actors> actorsList = (List<Actors>)session.getAttribute("actorsList");
+if(actorsList != null && actorsList.size() > 0){
+%>
 	<display:table name="Actors" class='dataTable' style="width:60%" pagesize="30">
 	<display:setProperty name="basic.msg.empty_list" value="" />
 	<display:setProperty name="paging.banner.all_items_found" value=""/>
@@ -47,9 +55,12 @@
   		
 	</display:table>
 
-</c:if>
+<%} %>
 
-<c:if test="${Languages.size() > 0}" >  
+<%
+	List<Language> languagesList = (List<Language>)session.getAttribute("languagesList");
+if(languagesList !=null && languagesList.size() > 0){
+%>
 	<display:table name="Languages" class='dataTable' style="width:60%" pagesize="30">
 	<display:setProperty name="basic.msg.empty_list" value="" />
 	<display:setProperty name="paging.banner.all_items_found" value=""/>
@@ -57,9 +68,12 @@
   		<display:column property="language" sortable="true" paramId="lid" href="languageMovies.jsp" paramProperty="lid" />  		
 	</display:table>
 
-</c:if>
+<%} %>
 
-<c:if test="${Genres.size() > 0}" >  
+<%
+	List<Genres> genresList = (List<Genres>)session.getAttribute("genresList");
+if(genresList!=null && genresList.size() > 0){
+%>
 	<display:table name="Genres" class='dataTable' style="width:60%" pagesize="30">
 	<display:setProperty name="basic.msg.empty_list" value="" />
 	<display:setProperty name="paging.banner.all_items_found" value=""/>
@@ -67,7 +81,7 @@
   		<display:column property="genre" sortable="true"  />  		
 	</display:table>
 
-</c:if>
+<%} %>
 
 </body>
 </html>

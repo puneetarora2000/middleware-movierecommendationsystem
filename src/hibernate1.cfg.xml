@@ -13,6 +13,8 @@
 <property name="show_sql">true</property>
 <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 <property name="hibernate.current_session_context_class">thread</property>
+<property name="hibernate.connection.timeout">25200</property>
+
 <mapping class="mrs.database.Actors" />
 <mapping class="mrs.database.Movies" />
 <mapping class="mrs.database.Language" />
