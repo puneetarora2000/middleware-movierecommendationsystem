@@ -11,6 +11,10 @@ import drools.movieapi.MoviesApi;
 
 public class TestCases {
 	
+	
+	
+	
+	
 	@Test
 	public void testInsertSingleRecommendationSuccess() throws Exception {
 		assertEquals(true,new MoviesApi().insertRecommendation("pirates of carribean", "divya"));
