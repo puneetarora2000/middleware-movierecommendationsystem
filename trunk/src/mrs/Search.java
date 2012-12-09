@@ -27,7 +27,7 @@ public class Search extends HttpServlet {
 	{
 		try {
 			
-			System.out.print("I am in Search");
+			System.out.println("I am in Search");
 			
 			String movie = request.getParameter("movie");
 			String actor = request.getParameter("actor");

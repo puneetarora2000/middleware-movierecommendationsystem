@@ -6,7 +6,7 @@ import org.hibernate.cfg.*;
 @SuppressWarnings("deprecation")
 public class HibernateUtil {
 	
-	private static final SessionFactory sessionFactory =  new Configuration().configure("hibernate1.cfg.xml").buildSessionFactory();
+	private static final SessionFactory sessionFactory =  new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		
 	public static final ThreadLocal session = new ThreadLocal();
 	
