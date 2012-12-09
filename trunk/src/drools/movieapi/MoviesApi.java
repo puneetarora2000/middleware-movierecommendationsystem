@@ -26,19 +26,32 @@ public class MoviesApi {
 	}
 		
 	
-	public void updateMovieRating(int mid, double rating) throws UnknownHostException {
-		System.out.println("Updating rating for movies");		
-		mongoDB.connectMovieDB();
-		mongoDB.updateMovieRating(mid, rating);
-		mongoDB.closeDB();
+	public boolean updateMovieRating(int mid, double rating) throws UnknownHostException {
+		System.out.println("Updating rating for movies");
+		try {
+			mongoDB.connectMovieDB();
+			mongoDB.updateMovieRating(mid, rating);
+			mongoDB.closeDB();
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
 	}
 	
-	public void updateMovieReview(int mid, String review) throws UnknownHostException {
-		System.out.println("Adding review for movies");		
-		mongoDB.connectMovieDB();
-		mongoDB.updateMovieReview(mid, review);
-		mongoDB.closeDB();
+	public boolean updateMovieReview(int mid, String review) throws UnknownHostException {
+		try {
+			System.out.println("Adding review for movies");		
+			mongoDB.connectMovieDB();
+			mongoDB.updateMovieReview(mid, review);
+			mongoDB.closeDB();
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
 	}
+	
 	
 	
 	//to be tested by JUnit
